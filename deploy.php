@@ -4,7 +4,7 @@ namespace Deployer;
 require 'recipe/symfony.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'guide.humandata.info');
 
 // Project repository
 set('repository', 'git@github.com:Humandata/guide.git');
@@ -22,9 +22,9 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('project.com')
-    ->set('deploy_path', '~/{{application}}');    
-    
+host('guide.humandata.info')
+    ->set('deploy_path', '/home/relaxmax/{{application}}');
+
 // Tasks
 
 task('build', function () {
@@ -38,3 +38,13 @@ after('deploy:failed', 'deploy:unlock');
 
 before('deploy:symlink', 'database:migrate');
 
+// test
+task('test', function () {
+    writeln('Hello world');
+});
+
+// pwd
+task('pwd', function () {
+    $result = run('pwd');
+     writeln("Current dir: $result");
+});
